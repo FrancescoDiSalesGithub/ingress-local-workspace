@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  nginx-kube
+  namespace: default
+  labels:
+    app:  nginx-kubernetes
+spec:
+  selector:
+    matchLabels:
+      app: nginx-kubernetes
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app:  nginx-kubernetes
+    spec:
+      containers:
+      - name:  nginx
+        image:  nginx:latest
+        resources:
+          requests:
+            cpu: 512m
+            memory: 512Mi
+          limits:
+            cpu: 512m
+            memory: 512Mi
+
+        ports:
+        - containerPort:  80
+          name:  nginx-port
