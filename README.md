@@ -42,7 +42,7 @@ sudo microk8s kubectl apply -f ingress.yaml
 
 Done this commands you now go to the vm who is external to the vm with kubernetes and try on your browser with:
 ```
-http://localhost/
+http://your-dns-domain.com/
 ```
 
 If everything went right you should have the nginx welcome page
